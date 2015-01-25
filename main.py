@@ -7,6 +7,7 @@ import urllib2
 from bs4 import BeautifulSoup
 import lxml
 import html5lib
+import re
 
 jinja_environment = jinja2.Environment(loader=
     jinja2.FileSystemLoader(os.path.dirname(__file__)))
@@ -29,7 +30,16 @@ class MainHandler(webapp2.RequestHandler):
         erdmeals = erdsoup.find_all('th')
         #Meal names: remove tags
         for meal in erdmeals:
-        	erdmeals[erdmeals.index(meal)] = str(meal).replace("<th scope=\"row\">","").replace("</th>","").replace(" ","").replace("\n","").replace("\xc2\xa0","")
+        	erdmeals[erdmeals.index(meal)] = str(meal).replace("<th scope=\"row\">","").replace("</th>","").replace(" ","").replace("\n","").replace("\xc2\xa0","").replace("<p>","").replace("</p>","")
+        erdtemp = []
+        erdhold = []
+        for meal in erdmeals:
+        	erdhold.append(meal)
+        	if "Dinner" in meal:
+        		erdtemp.append(erdhold)
+        		erdhold = []
+        del erdmeals[:]
+        erdmeals = erdtemp
         #Menus!
         erdmenus = erdsoup.find_all('td')
         #Menus: take away the tags
@@ -56,6 +66,15 @@ class MainHandler(webapp2.RequestHandler):
         #Meal names: remove tags
         for meal in hafmeals:
         	hafmeals[hafmeals.index(meal)] = str(meal).replace("<th scope=\"row\">","").replace("</th>","").replace(" ","").replace("\xc2\xa0","")
+        haftemp = []
+        hafhold = []
+        for meal in hafmeals:
+        	hafhold.append(meal)
+        	if "Dinner" in meal:
+        		haftemp.append(hafhold)
+        		hafhold = []
+        del hafmeals[:]
+        hafmeals = haftemp
         #Menus!
         hafmenus = hafsoup.find_all('td')
         #Menus: take away the tags

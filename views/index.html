@@ -7,15 +7,17 @@
 </head>
 <body>
 	<h1>Welcome!</h1>
+	{{erdmeals}}
+	{{hafmeals}}
 	<ol>
 	{% for date in range(0,erddates|length-1) %}
 		<li>{{ erddates[date] }}</li>
 	{% endfor %}
 	</ol>
 
-	<ul>
+	<ol>
 	{% for menu in range(0,hafmenus|length-1) %}
-		<li>That day's menu:
+		<li>That meal's menu:
 			<ol>
 			{% for item in range(0,hafmenus[menu]|length-1) %}
 				<li>{{ hafmenus[menu][item] }}</li>
@@ -23,7 +25,7 @@
 			</ol>
 		</li>
 	{% endfor %}
-	</ul>
+	</ol>
 
 	<ol>
 	{% for meal in range(0,hafmeals|length-1) %}
