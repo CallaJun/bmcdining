@@ -29,13 +29,12 @@ class MainHandler(webapp2.RequestHandler):
         erdmeals = erdsoup.find_all('th')
         #Meal names: remove tags
         for meal in erdmeals:
-        	erdmeals[erdmeals.index(meal)] = str(meal).replace("<th scope=\"row\">","").replace("</th>","")
-
+        	erdmeals[erdmeals.index(meal)] = str(meal).replace("<th scope=\"row\">","").replace("</th>","").replace(" ","").replace("\n","")
         #Menus!
         erdmenus = erdsoup.find_all('td')
         #Menus: take away the tags
         for menu in erdmenus:
-        	erdmenus[erdmenus.index(menu)] = str(menu).replace("<br/>",",").replace("<td>","").replace("</td>","").replace("<h6>","").replace("\n","").replace("\t","").replace("<p>","").replace("</p>","").replace(" ","")
+        	erdmenus[erdmenus.index(menu)] = str(menu).replace("<br/>",",").replace("<td>","").replace("</td>","").replace("<h6>","").replace("\n","").replace("\t","").replace("<p>","").replace("</p>","")#.replace(" ","")
         	#insert spaces
         #Menus: make it a list
         for menu in erdmenus:
@@ -56,13 +55,12 @@ class MainHandler(webapp2.RequestHandler):
         hafmeals = hafsoup.find_all('th')
         #Meal names: remove tags
         for meal in hafmeals:
-        	hafmeals[hafmeals.index(meal)] = str(meal).replace("<th scope=\"row\">","").replace("</th>","")
-
+        	hafmeals[hafmeals.index(meal)] = str(meal).replace("<th scope=\"row\">","").replace("</th>","").replace(" ","")
         #Menus!
         hafmenus = hafsoup.find_all('td')
         #Menus: take away the tags
         for menu in hafmenus:
-        	hafmenus[hafmenus.index(menu)] = str(menu).replace("<br/>",",").replace("<td>","").replace("</td>","").replace("<h6>","").replace("\n","").replace("\t","").replace("<p>","").replace("</p>","").replace(" ","")
+        	hafmenus[hafmenus.index(menu)] = str(menu).replace("<br/>",",").replace("<td>","").replace("</td>","").replace("<h6>","").replace("\n","").replace("\t","").replace("<p>","").replace("</p>","")#.replace(" ","")
         	#insert spaces
         #Menus: make it a list
         for menu in hafmenus:
@@ -72,6 +70,7 @@ class MainHandler(webapp2.RequestHandler):
         "erddates": erddates,
         "erdmeals": erdmeals,
         "erdmenus": erdmenus,
+
         "hafdates": hafdates,
         "hafmeals": hafmeals,
         "hafmenus": hafmenus,

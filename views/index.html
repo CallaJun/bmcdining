@@ -7,10 +7,10 @@
 </head>
 <body>
 	<h1>Welcome!</h1>
-	<p>{{erddates[0]}}
-	<br>
-	{{erdmenus[0][0]}}
-	{{hafmenus}}
-	</p>
+	<ol>
+	{% for date in range(0,8) %}
+		<li>{{ erddates[date] }}</li>
+	{% endfor %}
+	</ol>
 </body>
 </html>
