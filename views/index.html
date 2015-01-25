@@ -8,8 +8,26 @@
 <body>
 	<h1>Welcome!</h1>
 	<ol>
-	{% for date in range(0,8) %}
+	{% for date in range(0,erddates|length-1) %}
 		<li>{{ erddates[date] }}</li>
+	{% endfor %}
+	</ol>
+
+	<ul>
+	{% for menu in range(0,hafmenus|length-1) %}
+		<li>That day's menu:
+			<ol>
+			{% for item in range(0,hafmenus[menu]|length-1) %}
+				<li>{{ hafmenus[menu][item] }}</li>
+			{% endfor %}
+			</ol>
+		</li>
+	{% endfor %}
+	</ul>
+
+	<ol>
+	{% for meal in range(0,hafmeals|length-1) %}
+		<li>{{ hafmeals[meal] }}</li>
 	{% endfor %}
 	</ol>
 </body>

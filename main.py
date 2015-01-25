@@ -29,12 +29,12 @@ class MainHandler(webapp2.RequestHandler):
         erdmeals = erdsoup.find_all('th')
         #Meal names: remove tags
         for meal in erdmeals:
-        	erdmeals[erdmeals.index(meal)] = str(meal).replace("<th scope=\"row\">","").replace("</th>","").replace(" ","").replace("\n","")
+        	erdmeals[erdmeals.index(meal)] = str(meal).replace("<th scope=\"row\">","").replace("</th>","").replace(" ","").replace("\n","").replace("\xc2\xa0","")
         #Menus!
         erdmenus = erdsoup.find_all('td')
         #Menus: take away the tags
         for menu in erdmenus:
-        	erdmenus[erdmenus.index(menu)] = str(menu).replace("<br/>",",").replace("<td>","").replace("</td>","").replace("<h6>","").replace("\n","").replace("\t","").replace("<p>","").replace("</p>","")#.replace(" ","")
+        	erdmenus[erdmenus.index(menu)] = str(menu).replace("<br/>",",").replace("<td>","").replace("</td>","").replace("<h6>","").replace("\n","").replace("\t","").replace("<p>","").replace("</p>","")
         	#insert spaces
         #Menus: make it a list
         for menu in erdmenus:
@@ -55,12 +55,12 @@ class MainHandler(webapp2.RequestHandler):
         hafmeals = hafsoup.find_all('th')
         #Meal names: remove tags
         for meal in hafmeals:
-        	hafmeals[hafmeals.index(meal)] = str(meal).replace("<th scope=\"row\">","").replace("</th>","").replace(" ","")
+        	hafmeals[hafmeals.index(meal)] = str(meal).replace("<th scope=\"row\">","").replace("</th>","").replace(" ","").replace("\xc2\xa0","")
         #Menus!
         hafmenus = hafsoup.find_all('td')
         #Menus: take away the tags
         for menu in hafmenus:
-        	hafmenus[hafmenus.index(menu)] = str(menu).replace("<br/>",",").replace("<td>","").replace("</td>","").replace("<h6>","").replace("\n","").replace("\t","").replace("<p>","").replace("</p>","")#.replace(" ","")
+        	hafmenus[hafmenus.index(menu)] = str(menu).replace("<br/>",",").replace("<td>","").replace("</td>","").replace("<h6>","").replace("\n","").replace("\t","").replace("<p>","").replace("</p>","").replace("\xc2\xa0","").replace("\xe2\x80\x99","")
         	#insert spaces
         #Menus: make it a list
         for menu in hafmenus:
