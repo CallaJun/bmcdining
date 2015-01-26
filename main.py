@@ -7,7 +7,6 @@ import urllib2
 from bs4 import BeautifulSoup
 import lxml
 import html5lib
-import re
 
 jinja_environment = jinja2.Environment(loader=
     jinja2.FileSystemLoader(os.path.dirname(__file__)))
@@ -44,7 +43,7 @@ class MainHandler(webapp2.RequestHandler):
         erdmenus = erdsoup.find_all('td')
         #Menus: take away the tags
         for menu in erdmenus:
-        	erdmenus[erdmenus.index(menu)] = str(menu).replace("<br/>",",").replace("<td>","").replace("</td>","").replace("<h6>","").replace("\n","").replace("\t","").replace("<p>","").replace("</p>","")
+        	erdmenus[erdmenus.index(menu)] = str(menu).replace("<br/>",",").replace("<td>","").replace("</td>","").replace("<h6>","").replace("\n","").replace("\t","").replace("<p>","").replace("</p>","").decode('utf-8')
         	#insert spaces
         #Menus: make it a list
         for menu in erdmenus:
@@ -59,7 +58,7 @@ class MainHandler(webapp2.RequestHandler):
         hafdates = hafsoup.find_all('h3')
         #Dates: remove tags
         for date in hafdates:
-        	hafdates[hafdates.index(date)] = str(date).replace("<h3>","").replace("</h3>","")
+        	hafdates[hafdates.index(date)] = str(date).replace("<h3>","").replace("</h3>","").decode('utf-8')
 
         #Meal names!
         hafmeals = hafsoup.find_all('th')
@@ -79,7 +78,7 @@ class MainHandler(webapp2.RequestHandler):
         hafmenus = hafsoup.find_all('td')
         #Menus: take away the tags
         for menu in hafmenus:
-        	hafmenus[hafmenus.index(menu)] = str(menu).replace("<br/>",",").replace("<td>","").replace("</td>","").replace("<h6>","").replace("\n","").replace("\t","").replace("<p>","").replace("</p>","").replace("\xc2\xa0","").replace("\xe2\x80\x99","")
+        	hafmenus[hafmenus.index(menu)] = str(menu).replace("<br/>",",").replace("<td>","").replace("</td>","").replace("<h6>","").replace("\n","").replace("\t","").replace("<p>","").replace("</p>","").decode('utf-8')
         	#insert spaces
         #Menus: make it a list
         for menu in hafmenus:

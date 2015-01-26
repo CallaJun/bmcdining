@@ -7,29 +7,41 @@
 </head>
 <body>
 	<h1>Welcome!</h1>
-	{{erdmeals}}
-	{{hafmeals}}
+	<h2>Erdman</h2>
 	<ol>
+	{% set erdcount = {'value': 0} %}
 	{% for date in range(0,erddates|length-1) %}
 		<li>{{ erddates[date] }}</li>
-	{% endfor %}
-	</ol>
-
-	<ol>
-	{% for menu in range(0,hafmenus|length-1) %}
-		<li>That meal's menu:
-			<ol>
-			{% for item in range(0,hafmenus[menu]|length-1) %}
-				<li>{{ hafmenus[menu][item] }}</li>
+		<ol>
+		{% for meal in range(0,erdmeals[date]|length) %}
+			<li>{{ erdmeals[date][meal] }}</li>
+			{% if erdcount.update({'value': (erdcount.value + 1)}) %} {% endif %}
+			<ul>
+			{% for item in range(0,erdmenus[erdcount.value-1]|length-1) %}
+				<li>{{ erdmenus[erdcount.value-1][item] }}</li>
 			{% endfor %}
-			</ol>
-		</li>
+			</ul>
+		{% endfor %}
+		</ol>
 	{% endfor %}
 	</ol>
 
+	<h2>Haffner</h2>
 	<ol>
-	{% for meal in range(0,hafmeals|length-1) %}
-		<li>{{ hafmeals[meal] }}</li>
+	{% set hafcount = {'value': 0} %}
+	{% for date in range(0,hafdates|length-1) %}
+		<li>{{ hafdates[date] }}</li>
+		<ol>
+		{% for meal in range(0,hafmeals[date]|length) %}
+			<li>{{ hafmeals[date][meal] }}</li>
+			{% if hafcount.update({'value': (hafcount.value + 1)}) %} {% endif %}
+			<ul>
+			{% for item in range(0,hafmenus[hafcount.value-1]|length-1) %}
+				<li>{{ hafmenus[hafcount.value-1][item] }}</li>
+			{% endfor %}
+			</ul>
+		{% endfor %}
+		</ol>
 	{% endfor %}
 	</ol>
 </body>
