@@ -5,44 +5,58 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.2/js/bootstrap.min.js"></script>
 </head>
+<style>
+	.header {
+		text-align: center;
+	}
+</style>
 <body>
-	<h1>Welcome!</h1>
-	<h2>Erdman</h2>
-	<ol>
-	{% set erdcount = {'value': 0} %}
-	{% for date in range(0,erddates|length-1) %}
-		<li>{{ erddates[date] }}</li>
-		<ol>
-		{% for meal in range(0,erdmeals[date]|length) %}
-			<li>{{ erdmeals[date][meal] }}</li>
-			{% if erdcount.update({'value': (erdcount.value + 1)}) %} {% endif %}
-			<ul>
-			{% for item in range(0,erdmenus[erdcount.value-1]|length-1) %}
-				<li>{{ erdmenus[erdcount.value-1][item] }}</li>
+<div class="header">
+		<h1>BMC Dining</h1>
+</div>
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-6 column">
+			<h2>Erdman</h2>
+			<ol>
+			{% set erdcount = {'value': 0} %}
+			{% for date in range(0,erddates|length-1) %}
+				<li>{{ erddates[date] }}</li>
+				<ol>
+				{% for meal in range(0,erdmeals[date]|length) %}
+					<li>{{ erdmeals[date][meal] }}</li>
+					{% if erdcount.update({'value': (erdcount.value + 1)}) %} {% endif %}
+					<ul>
+					{% for item in range(0,erdmenus[erdcount.value-1]|length-1) %}
+						<li>{{ erdmenus[erdcount.value-1][item] }}</li>
+					{% endfor %}
+					</ul>
+				{% endfor %}
+				</ol>
 			{% endfor %}
-			</ul>
-		{% endfor %}
-		</ol>
-	{% endfor %}
-	</ol>
-
-	<h2>Haffner</h2>
-	<ol>
-	{% set hafcount = {'value': 0} %}
-	{% for date in range(0,hafdates|length-1) %}
-		<li>{{ hafdates[date] }}</li>
-		<ol>
-		{% for meal in range(0,hafmeals[date]|length) %}
-			<li>{{ hafmeals[date][meal] }}</li>
-			{% if hafcount.update({'value': (hafcount.value + 1)}) %} {% endif %}
-			<ul>
-			{% for item in range(0,hafmenus[hafcount.value-1]|length-1) %}
-				<li>{{ hafmenus[hafcount.value-1][item] }}</li>
-			{% endfor %}
-			</ul>
-		{% endfor %}
-		</ol>
-	{% endfor %}
-	</ol>
+			</ol>
+		</div>
+		<div class="col-md-6 column">
+			<h2>Haffner</h2>
+				<ol>
+				{% set hafcount = {'value': 0} %}
+				{% for date in range(0,hafdates|length-1) %}
+					<li>{{ hafdates[date] }}</li>
+					<ol>
+					{% for meal in range(0,hafmeals[date]|length) %}
+						<li>{{ hafmeals[date][meal] }}</li>
+						{% if hafcount.update({'value': (hafcount.value + 1)}) %} {% endif %}
+						<ul>
+						{% for item in range(0,hafmenus[hafcount.value-1]|length-1) %}
+							<li>{{ hafmenus[hafcount.value-1][item] }}</li>
+						{% endfor %}
+						</ul>
+					{% endfor %}
+					</ol>
+				{% endfor %}
+				</ol>
+		</div>
+	</div>
+</div>
 </body>
 </html>
